@@ -4,6 +4,8 @@ import React from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import Colors from "./constants/Colors";
 import AppNavigator from "./navigation";
+import { Provider, useDispatch } from "react-redux";
+import store from "./store";
 
 const App = () => {
   const [fontsLoaded, _] = useFonts({
@@ -17,11 +19,13 @@ const App = () => {
   }
 
   return (
-    <View style={styles.app}>
-      <SafeAreaView style={styles.safeArea}>
-        <AppNavigator />
-      </SafeAreaView>
-    </View>
+    <Provider store={store}>
+      <View style={styles.app}>
+        <SafeAreaView style={styles.safeArea}>
+          <AppNavigator />
+        </SafeAreaView>
+      </View>
+    </Provider>
   );
 };
 

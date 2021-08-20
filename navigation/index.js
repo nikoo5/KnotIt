@@ -1,14 +1,15 @@
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import { useSelector } from "react-redux";
 import AuthNavigator from "./Auth/AuthNavigator";
 import MainNavigator from "./Main/MainNavigator";
 
 const AppNavigator = () => {
-  const authenticated = false;
+  const auth = useSelector((state) => state.auth);
 
   return (
     <NavigationContainer>
-      {authenticated ? <MainNavigator /> : <AuthNavigator />}
+      {auth.token !== null ? <MainNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };
